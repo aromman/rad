@@ -1,0 +1,5 @@
+my-errors.log
+app/models/saikono_roi.code-workspace
+app/Integraciones/Fudo/cacert.local.pem
+app/config/secrets.local.php
+.claude/settings.json
