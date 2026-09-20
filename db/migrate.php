@@ -68,7 +68,7 @@ try {
 
     $pdo->exec(
         "CREATE TABLE IF NOT EXISTS schema_migrations (
-            filename VARCHAR(255) NOT NULL PRIMARY KEY,
+            filename VARCHAR(190) NOT NULL PRIMARY KEY,
             applied_at DATETIME NOT NULL
         )"
     );
