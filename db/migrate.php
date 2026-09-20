@@ -1,15 +1,25 @@
 <?php
 /**
- * Endpoint de migraciones de base de datos.
+ * Aplica los .sql pendientes de este directorio.
  *
- * El pipeline de despliegue (GitHub Actions) lo llama por HTTP despues de
- * subir los archivos via FTP, para aplicar los .sql nuevos que encuentre en
- * este mismo directorio. Requiere el header X-Migrate-Token con el valor
- * definido en MIGRATE_TOKEN (app/models/constantes.php en el servidor).
+ * Se puede correr de dos formas:
+ * - CLI (recomendado): via cron job del hosting, ej.
+ *   php /home/USUARIO/public_html/rad/db/migrate.php
+ *   No requiere token: al ejecutarse localmente en el servidor no hay red
+ *   de por medio.
+ * - HTTP: el pipeline de GitHub Actions intenta llamarlo por HTTPS despues
+ *   de desplegar. Requiere el header X-Migrate-Token con el valor definido
+ *   en MIGRATE_TOKEN (app/models/constantes.php en el servidor). Si el
+ *   hosting bloquea el trafico entrante de GitHub Actions, esta via falla
+ *   y el cron queda como mecanismo real de aplicacion.
  */
 
+$isCli = PHP_SAPI === 'cli';
+
 ini_set('display_errors', '0');
-header('Content-Type: application/json');
+if (!$isCli) {
+    header('Content-Type: application/json');
+}
 
 require_once __DIR__ . '/../app/models/constantes.php';
 require_once __DIR__ . '/../app/models/connection.php';
@@ -22,20 +32,24 @@ class MigrationRunner extends Connection
     }
 }
 
-function respond($status, $payload)
+function respond($isCli, $status, $payload)
 {
-    http_response_code($status);
-    echo json_encode($payload);
-    exit;
+    if (!$isCli) {
+        http_response_code($status);
+    }
+    echo json_encode($payload) . PHP_EOL;
+    exit($status >= 400 ? 1 : 0);
 }
 
-$providedToken = isset($_SERVER['HTTP_X_MIGRATE_TOKEN']) ? $_SERVER['HTTP_X_MIGRATE_TOKEN'] : '';
-if (!defined('MIGRATE_TOKEN') || MIGRATE_TOKEN === '' || !hash_equals(MIGRATE_TOKEN, $providedToken)) {
-    respond(403, array('ok' => false, 'error' => 'forbidden'));
-}
+if (!$isCli) {
+    $providedToken = isset($_SERVER['HTTP_X_MIGRATE_TOKEN']) ? $_SERVER['HTTP_X_MIGRATE_TOKEN'] : '';
+    if (!defined('MIGRATE_TOKEN') || MIGRATE_TOKEN === '' || !hash_equals(MIGRATE_TOKEN, $providedToken)) {
+        respond($isCli, 403, array('ok' => false, 'error' => 'forbidden'));
+    }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    respond(405, array('ok' => false, 'error' => 'method not allowed'));
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        respond($isCli, 405, array('ok' => false, 'error' => 'method not allowed'));
+    }
 }
 
 function splitSqlStatements($sql)
@@ -95,8 +109,8 @@ try {
         $ranNow[] = $filename;
     }
 
-    respond(200, array('ok' => true, 'applied' => $ranNow, 'skipped' => $skipped));
+    respond($isCli, 200, array('ok' => true, 'applied' => $ranNow, 'skipped' => $skipped));
 } catch (Throwable $e) {
     error_log(PHP_EOL . '[' . date('d.m.Y h:i:s') . '] migrate.php: ' . $e->getMessage(), 3, 'my-errors.log');
-    respond(500, array('ok' => false, 'error' => 'migration failed, see server logs'));
+    respond($isCli, 500, array('ok' => false, 'error' => 'migration failed, see server logs'));
 }
