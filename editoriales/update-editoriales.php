@@ -82,11 +82,11 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Actualizar Editorial</h1>
+                        <h1 class="mt-4">Actualizar Marca</h1>
                         <h2 class="mt-4"><?php echo $mensaje?></h2>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="editoriales.php">Editoriales</a></li>
-                            <li class="breadcrumb-item active">Actualizar Editorial</li>
+                            <li class="breadcrumb-item"><a href="editoriales.php">Marcas</a></li>
+                            <li class="breadcrumb-item active">Actualizar Marca</li>
                         </ol>
                         <div class="card-body">
                             <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">

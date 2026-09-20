@@ -66,7 +66,7 @@ try {
         $filaCostoInteresAnual = round($filaValorCosto * $tasaInteresAnual / 100, 2);
 
         return array(
-            'editorial' => isset($fila['editorial']) && $fila['editorial'] !== '' ? $fila['editorial'] : 'Sin editorial',
+            'editorial' => isset($fila['editorial']) && $fila['editorial'] !== '' ? $fila['editorial'] : 'Sin marca',
             'stock' => round((float) $fila['stock'], 2),
             'valorCosto' => $filaValorCosto,
             'costoMantenimientoMensual' => round($filaCostoMantenimientoAnual / 12, 2),

@@ -25,7 +25,7 @@ $editorialesListado = $editorialesViewModel['editoriales'];
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Editoriales</title>
+        <title>Marcas</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -90,7 +90,7 @@ $editorialesListado = $editorialesViewModel['editoriales'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Editoriales</h1>
+                        <h1 class="mt-4">Marcas</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Tablero</a></li>
                             <li class="breadcrumb-item active">Periodo Actual</li>
@@ -98,7 +98,7 @@ $editorialesListado = $editorialesViewModel['editoriales'];
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Editoriales
+                                Marcas
                             </div>
                             <div class="card-body">
                                 <form id="formEditoriales" method="post" onSubmit="return false;">
@@ -132,7 +132,7 @@ $editorialesListado = $editorialesViewModel['editoriales'];
                                                     <td align="center">
                                                         <a href="view-editorial.php?forwardOk=editoriales.php&id=<?php echo $row['id'];?>" class="text-primary"><i class="fa fa-fw fa-eye"></i></a>
                                                         <a href="update-editoriales.php?id=<?php echo $row['id'];?>" class="text-primary"><i class="fa fa-fw fa-pencil"></i></a>
-                                                        <a href="../delete-entity.php?entityName=editoriales&forwardOk=editoriales/editoriales.php&delId=<?php echo $row['id'];?>" class="text-danger" onClick="return confirm('Esta seguro de querer borrar esta editorial?');"><i class="fa fa-fw fa-trash"></i></a>
+                                                        <a href="../delete-entity.php?entityName=editoriales&forwardOk=editoriales/editoriales.php&delId=<?php echo $row['id'];?>" class="text-danger" onClick="return confirm('Esta seguro de querer borrar esta marca?');"><i class="fa fa-fw fa-trash"></i></a>
                                                     </td>
                                                 </tr>
 
@@ -146,7 +146,7 @@ $editorialesListado = $editorialesViewModel['editoriales'];
                                     <tfoot>
                                         <tr>
                                             <td colspan="6">
-                                                <a href="javascript:;" class="btn btn-danger" id="addmoreeditoriales"><i class="fa fa-fw fa-plus-circle"></i> Nueva Editorial</a>
+                                                <a href="javascript:;" class="btn btn-danger" id="addmoreeditoriales"><i class="fa fa-fw fa-plus-circle"></i> Nueva Marca</a>
                                                 <button type="submit" name="saveEditoriales" id="saveEditoriales" value="saveEditoriales" class="btn btn-primary" hidden><i class="fa fa-fw fa-save"></i> Grabar</button>
                                                 <a href="../export-data.php?entityName=editoriales" class="btn btn-info">Export to excel</a>
                                             </td>

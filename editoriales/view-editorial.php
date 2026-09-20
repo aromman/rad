@@ -51,7 +51,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Editorial</title>
+        <title>Marca</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -103,15 +103,15 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))
                 <main>
                     <!--Producto -->    
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Editorial</h1>
+                        <h1 class="mt-4">Marca</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="editoriales.php">Editoriales</a></li>
-                            <li class="breadcrumb-item active">Ver Editorial</li>
+                            <li class="breadcrumb-item"><a href="editoriales.php">Marcas</a></li>
+                            <li class="breadcrumb-item active">Ver Marca</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Datos Editorial
+                                Datos Marca
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -148,7 +148,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))
 
                                                     <td align="center">
                                                         <a href="update-editoriales.php?id=<?php echo $row['id'];?>" class="text-primary"><i class="fa fa-fw fa-pencil"></i></a>
-                                                        <a href="../delete-entity.php?entityName=editoriales&forwardOk=editoriales/editoriales.php&delId=<?php echo $row['id'];?>" class="text-danger" onClick="return confirm('Esta seguro de querer borrar esta editorial?');"><i class="fa fa-fw fa-trash"></i></a>
+                                                        <a href="../delete-entity.php?entityName=editoriales&forwardOk=editoriales/editoriales.php&delId=<?php echo $row['id'];?>" class="text-danger" onClick="return confirm('Esta seguro de querer borrar esta marca?');"><i class="fa fa-fw fa-trash"></i></a>
                                                     </td>                            
 
                                                 </tr>

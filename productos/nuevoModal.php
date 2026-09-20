@@ -68,7 +68,7 @@ if(isset($_POST["sku"]) && !empty($_POST["sku"])){
                         <input type="number" step=".01" name="precioCosto" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label>Editorial</label>
+                        <label>Marca</label>
                         <select name="editorial" id="editorial" class="form-control" data-live-search="true" data-size="10" required="required">
                             <option value="">Seleccione</option>
                             <?php

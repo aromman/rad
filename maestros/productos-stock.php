@@ -111,7 +111,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                             <th class="text-center">Cantidad</th>
                                             <th class="text-center">Precio</th>
                                             <th class="text-center">Costo</th>
-                                            <th class="text-center">Editorial</th>
+                                            <th class="text-center">Marca</th>
                                             <th class="text-center">Es Nuevo</th>
                                         </tr>
                                     </thead>
@@ -222,7 +222,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                 <table class="table table-striped table-bordered" id="tb">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Editorial</th>
+                                            <th class="text-center">Marca</th>
                                             <th class="text-center">Cantidad</th>
                                             <th class="text-center">Ubicacion</th>
                                             <th class="text-center">Fecha</th>

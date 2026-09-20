@@ -97,7 +97,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                                 
                                 <div  class="form-group">
-                                    <label>Editorial</label>
+                                    <label>Marca</label>
                                     <select name="editorial" id="editorial" class="form-control" required="required">
                                         <option value="">Seleccione</option>
                                         <?php

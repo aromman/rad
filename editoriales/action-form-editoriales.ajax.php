@@ -25,7 +25,7 @@ if(isset($_REQUEST['action']) and $_REQUEST['action']=="addDataRowEditoriales"){
             </select>
         </td>
         <td align="center">
-            <a class="text-danger" onClick="if(confirm('Esta seguro de querer borrar esta Editorial?')){$(this).closest('tr').remove();}"><i class="fa fa-fw fa-trash"></i></a>
+            <a class="text-danger" onClick="if(confirm('Esta seguro de querer borrar esta Marca?')){$(this).closest('tr').remove();}"><i class="fa fa-fw fa-trash"></i></a>
         </td>
     </tr>
     <?php

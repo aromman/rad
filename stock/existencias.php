@@ -157,7 +157,7 @@ $rsProductosPorEditorial = $productoPDO->getStockNotValidateGroupByEditorial();
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-header">Existencias por Editorial</div>
+                                    <div class="card-header">Existencias por Marca</div>
                                     <div class="list-group list-group-flush">
                                     <?php 
                                             $cantidadProductos = 0;

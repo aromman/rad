@@ -34,7 +34,7 @@ $esNuevo = isset($esNuevo) ? $esNuevo : '';
                         <input type="number" step=".01" name="precioCompra" class="form-control" required="required">
                     </div>
                     <div class="mb-3">
-                        <label>Editorial</label>
+                        <label>Marca</label>
                         <select name="editorial" id="editorial" class="form-control" data-live-search="true" data-size="10" required="required">
                             <option value="">Seleccione</option>
                         </select>

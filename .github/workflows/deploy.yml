@@ -35,6 +35,11 @@ jobs:
             **/.git*/**
             **/.github/**
             **/config/config.local.php
-            **/db/**
             **/README.md
             app/models/constantes.php
+
+      - name: Run DB migrations
+        run: |
+          curl --fail-with-body -sS -X POST \
+            -H "X-Migrate-Token: ${{ secrets.MIGRATE_TOKEN }}" \
+            "${{ vars.APP_URL }}/db/migrate.php"

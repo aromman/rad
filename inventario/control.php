@@ -380,7 +380,7 @@ if(!isset($_SESSION["user.loggedin"]) || $_SESSION["user.loggedin"] !== true){
                                 campoDetalleInput('Stock', 'detalleStock', producto.stock, '1') +
                                 campoDetalleInput('Precio de Venta', 'detallePrecio', producto.precio, '.01') +
                                 campoDetalle('Precio de Costo', producto.precioCostoEtiqueta) +
-                                campoDetalle('Editorial', producto.editorial) +
+                                campoDetalle('Marca', producto.editorial) +
                                 '<div class="control-detalle-acciones">' +
                                     '<button type="button" id="detalleProductoAceptar" class="btn btn-primary btn-sm">Aceptar</button>' +
                                     '<button type="button" id="detalleProductoCancelar" class="btn btn-secondary btn-sm">Cancelar</button>' +
@@ -395,7 +395,7 @@ if(!isset($_SESSION["user.loggedin"]) || $_SESSION["user.loggedin"] !== true){
                         campoDetalle('Stock', producto.stockEtiqueta) +
                         campoDetalle('Precio de Venta', producto.precioEtiqueta) +
                         campoDetalle('Precio de Costo', producto.precioCostoEtiqueta) +
-                        campoDetalle('Editorial', producto.editorial) +
+                        campoDetalle('Marca', producto.editorial) +
                         campoDetalle('Proveedor', producto.proveedor) +
                         campoDetalle('Serie', producto.serie) +
                         campoDetalle('Formato', producto.formato) +
@@ -777,7 +777,7 @@ if(!isset($_SESSION["user.loggedin"]) || $_SESSION["user.loggedin"] !== true){
                                             </select>
                                         </div>
                                         <div class="form-group control-filtro">
-                                            <label for="filtroEditorial">Editorial</label>
+                                            <label for="filtroEditorial">Marca</label>
                                             <select id="filtroEditorial" class="form-control selectpicker" data-live-search="true" data-size="10">
                                                 <option value="">Todas</option>
                                             </select>

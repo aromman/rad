@@ -92,14 +92,14 @@ require_once __DIR__ . '/../app/config/url.php';
                                 <div class="card shadow h-100">
                                     <div class="card-header">
                                         <i class="fas fa-table me-1"></i>
-                                        Costo de mantenimiento por editorial
+                                        Costo de mantenimiento por marca
                                     </div>
                                     <div class="card-body p-0">
                                         <div class="table-responsive">
                                             <table class="table mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Editorial</th>
+                                                        <th>Marca</th>
                                                         <th class="text-end">Stock</th>
                                                         <th class="text-end">Valor a costo</th>
                                                         <th class="text-end">Mantenimiento mensual</th>
@@ -120,7 +120,7 @@ require_once __DIR__ . '/../app/config/url.php';
                                 <div class="card shadow h-100">
                                     <div class="card-header">
                                         <i class="fas fa-chart-column me-1"></i>
-                                        Top 10 editoriales por costo total mensual
+                                        Top 10 marcas por costo total mensual
                                     </div>
                                     <div class="card-body">
                                         <div class="cmi-chart-wrap">

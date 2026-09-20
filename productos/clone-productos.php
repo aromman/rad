@@ -148,7 +148,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                     <input type="number" step=".01" name="precioCosto" value="<?php echo $precioCosto;?>" class="form-control" required="required">
                                 </div>
                                 <div>
-                                    <label>Editorial</label>
+                                    <label>Marca</label>
                                     <select name="editorial" id="editorial" class="form-control" data-live-search="true" data-size="10" required="required">
                                         <option value="">Seleccione</option>
                                         <?php

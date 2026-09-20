@@ -112,7 +112,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                            
                             <form id="formUpdateProductosStock" method="post">
                                 <div  class="form-group">
-                                    <label>Editorial</label>
+                                    <label>Marca</label>
                                     <select name="editorial" id="editorial" class="form-control" required="required">
                                         <option value="">Seleccione</option>
                                         <?php

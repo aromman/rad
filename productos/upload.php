@@ -113,7 +113,7 @@ if ( isset($_POST["submit"]) ) {
                                         <th class="text-center">titulo</th>
                                         <th class="text-center">stock</th>
                                         <th class="text-center">precio</th>
-                                        <th class="text-center">editorial</th>
+                                        <th class="text-center">marca</th>
                                         <th class="text-center">serie</th>
                                         <th class="text-center">tomo</th>
                                         <th class="text-center">formato</th>

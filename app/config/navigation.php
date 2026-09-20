@@ -141,7 +141,7 @@ function build_navigation($role, $channelType)
             array('label' => 'Cuentas Personales', 'path' => '/cuentas/cuentas-personales.php', 'icon' => 'fa-wallet'),
         ));
         $addGroup('productos', 'Catálogo', array(
-            array('label' => 'Editoriales', 'path' => '/editoriales/editoriales.php', 'icon' => 'fa-building'),
+            array('label' => 'Marcas', 'path' => '/editoriales/editoriales.php', 'icon' => 'fa-building'),
             array('label' => 'Formatos', 'path' => '/maestros/productos-formato.php', 'icon' => 'fa-shapes'),
             array('label' => 'Series', 'path' => '/maestros/productos-serie.php', 'icon' => 'fa-layer-group'),
         ));

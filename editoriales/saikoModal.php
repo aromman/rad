@@ -30,7 +30,7 @@
                         <input type="number" step="0" name="saikoPrecio" class="form-control" required="required">
                     </div>
                     <div class="form-group">
-                        <label>Editorial</label>
+                        <label>Marca</label>
                         <select name="saikoEditorial" id="saikoEditorial" class="form-control" data-live-search="true" data-size="10" required="required">
                         <option value="">Seleccione</option>
                         <?php

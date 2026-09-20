@@ -29,7 +29,7 @@
                         <input type="number" step="0" name="consignacionPrecio" class="form-control" required="required">
                     </div>
                     <div class="form-group">
-                        <label>Editorial</label>
+                        <label>Marca</label>
                         <select name="consignacionEditorial" id="consignacionEditorial" class="form-control" data-live-search="true" data-size="10" required="required">
                         <option value="">Seleccione</option>
                         <?php foreach ($editorialesConsignacion as $val) { ?>

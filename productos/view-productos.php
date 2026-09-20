@@ -73,7 +73,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))
                                             <th class="text-center">Titulo</th>
                                             <th class="text-center">Stock</th>
                                             <th class="text-center">Precio</th>
-                                            <th class="text-center">Editorial</th>
+                                            <th class="text-center">Marca</th>
                                             <th class="text-center">Metodo</th>
                                         </tr>
                                     </thead>
