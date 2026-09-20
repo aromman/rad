@@ -38,20 +38,9 @@ jobs:
             **/README.md
             app/models/constantes.php
 
-      # El hosting bloquea el trafico HTTPS entrante desde las IPs de
-      # datacenter de GitHub Actions, asi que este intento es best-effort:
-      # no falla el deploy si no puede conectar. La aplicacion real de
-      # las migraciones queda a cargo de un cron job en el propio hosting
-      # que corre db/migrate.php por CLI (ver README del proyecto).
-      - name: Try to trigger DB migrations (best-effort)
-        continue-on-error: true
-        run: |
-          if [ -z "${{ vars.APP_URL }}" ]; then
-            echo "APP_URL no configurada, se omite el intento por HTTP (el cron del hosting igual va a aplicar las migraciones)."
-            exit 0
-          fi
-          curl --fail-with-body -sS -X POST \
-            --connect-timeout 10 --max-time 20 \
-            --retry 1 --retry-delay 5 --retry-all-errors \
-            -H "X-Migrate-Token: ${{ secrets.MIGRATE_TOKEN }}" \
-            "${{ vars.APP_URL }}/db/migrate.php"
+      # Las migraciones de base de datos las aplica un cron job en el propio
+      # hosting, corriendo db/migrate.php por CLI. El hosting bloquea el
+      # trafico HTTPS entrante desde las IPs de GitHub Actions (WAF/firewall
+      # del proveedor), asi que no se intenta dispararlas desde aca: los
+      # intentos repetidos contra un endpoint bloqueado llegaron a hacer que
+      # el firewall tambien cortara la conexion FTP del deploy.
