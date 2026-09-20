@@ -40,6 +40,10 @@ jobs:
 
       - name: Run DB migrations
         run: |
+          if [ -z "${{ vars.APP_URL }}" ]; then
+            echo "::error::Falta la variable de repo APP_URL (Settings > Secrets and variables > Actions > Variables), ej. https://tudominio.com/rad"
+            exit 1
+          fi
           curl --fail-with-body -sS -X POST \
             -H "X-Migrate-Token: ${{ secrets.MIGRATE_TOKEN }}" \
             "${{ vars.APP_URL }}/db/migrate.php"
