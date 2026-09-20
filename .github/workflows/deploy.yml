@@ -45,5 +45,7 @@ jobs:
             exit 1
           fi
           curl --fail-with-body -sS -X POST \
+            --connect-timeout 15 --max-time 30 \
+            --retry 4 --retry-delay 15 --retry-all-errors \
             -H "X-Migrate-Token: ${{ secrets.MIGRATE_TOKEN }}" \
             "${{ vars.APP_URL }}/db/migrate.php"
