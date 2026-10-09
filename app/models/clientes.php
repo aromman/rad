@@ -89,15 +89,24 @@ class Cliente extends Crud
 
   public function create(){
     try{
-      $sql = "INSERT INTO ".self::TABLE." (apellido, nombre, dni, email, id_descuento) VALUES (?, ?, ?, ?, ?)";
-      $stm=$this->pdo->prepare($sql);
-      $stm->execute(array(
+      // dni y email son NOT NULL sin default: se graban 0 / '' cuando vienen vacios
+      $fields = array('apellido', 'nombre', 'dni', 'email', 'solo_contacto');
+      $values = array(
         $this->apellido,
         $this->nombre,
-        !empty($this->dni) ? $this->dni : null,
-        !empty($this->email) ? $this->email : null,
-        !empty($this->idDescuento) ? $this->idDescuento : null,
-      ));
+        !empty($this->dni) ? $this->dni : 0,
+        !empty($this->email) ? $this->email : '',
+        !empty($this->soloContacto) ? 1 : 0,
+      );
+
+      if (!empty($this->idDescuento)){
+        $fields[] = 'id_descuento';
+        $values[] = $this->idDescuento;
+      }
+
+      $sql = "INSERT INTO ".self::TABLE." (".implode(', ', $fields).") VALUES (".implode(', ', array_fill(0, count($fields), '?')).")";
+      $stm=$this->pdo->prepare($sql);
+      $stm->execute($values);
       return $this->pdo->lastInsertId();
     }catch(PDOException $e){
         error_log(PHP_EOL."[".date('d.m.Y h:i:s'). "] ".$e->getMessage(), 3, "my-errors.log");
@@ -119,10 +128,8 @@ class Cliente extends Crud
         $sql .= ", email = :email";
         $params[':email'] = $this->email;
       }
-      if (!empty($this->idDescuento)){
-        $sql .= ", id_descuento = :idDescuento";
-        $params[':idDescuento'] = $this->idDescuento;
-      }
+      $sql .= ", id_descuento = :idDescuento";
+      $params[':idDescuento'] = !empty($this->idDescuento) ? $this->idDescuento : null;
       if (isset($this->soloContacto)){
         $sql .= ", solo_contacto = :soloContacto";
         $params[':soloContacto'] = $this->soloContacto;

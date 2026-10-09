@@ -112,7 +112,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                 </div>
                                 <div class="form-group">
                                     <label>Descuento</label>
-                                    <select name="descuento" id="descuento" class="form-control" data-live-search="true" data-size="10" required="required">
+                                    <select name="descuento" id="descuento" class="form-control" data-live-search="true" data-size="10">
                                     <option value="">Seleccione</option>
                                     <?php
                                         foreach ($clienteEditarSimpleViewModel['descuentos'] as $val) {

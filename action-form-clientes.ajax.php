@@ -10,7 +10,7 @@ if(isset($_REQUEST['action']) and $_REQUEST['action']=="addDataRowClientes"){
         <td><input type="text" name="email[]" class="form-control"></td>
 
         <td>
-            <select name="descuento[]" id="descuento" class="form-control selectpicker" data-live-search="true" data-size="10" required="required">
+            <select name="descuento[]" id="descuento" class="form-control selectpicker" data-live-search="true" data-size="10">
                 <option value="">Seleccione</option>
                 <?php
                     foreach ($descuentosSelectorViewModel['descuentos'] as $val) {

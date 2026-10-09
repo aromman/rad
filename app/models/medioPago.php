@@ -122,6 +122,19 @@ class MedioPago extends Crud
     }
   }
 
+  public function getAllDeCuentasTipoP(){
+    try
+    {
+        $stm = $this->pdo->prepare("select mp.id, mp.nombre from medio_pago mp, cuentas c where mp.id_cuenta = c.id and c.tipo = 'P'");
+        $stm->execute();
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch (PDOException $e){
+        error_log(PHP_EOL."[".date('d.m.Y h:i:s'). "] ".$e->getMessage(), 3, "my-errors.log");
+        return array();
+    }
+  }
+
   public function getByCuenta($idCuenta){
     try
     {

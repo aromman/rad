@@ -9,6 +9,22 @@ if(!isset($_SESSION["user.loggedin"]) || $_SESSION["user.loggedin"] !== true){
 }
 
 require_once "../bff/clientes/listado-view-model.php";
+require_once "../bff/clientes/action-form-view-model.php";
+
+if (isset($_POST["apellido"]) && !empty($_POST["apellido"])) {
+    agregarCliente(
+        $_POST["apellido"],
+        isset($_POST["nombre"]) ? $_POST["nombre"] : '',
+        isset($_POST["dni"]) ? $_POST["dni"] : null,
+        isset($_POST["email"]) ? $_POST["email"] : null,
+        isset($_POST["descuento"]) ? $_POST["descuento"] : null,
+        isset($_POST["soloContacto"]) ? $_POST["soloContacto"] : 0
+    );
+    header("location: clientes.php");
+    exit;
+}
+
+$descuentosSelectorViewModel = obtenerDescuentosSelectorViewModel();
 
 $clientesViewModel = obtenerClientesListadoViewModel();
 $clientesListado = $clientesViewModel['clientes'];

@@ -23,4 +23,16 @@ function agregarClientesRapido($apellidos, $nombres, $dnis, $emails, $descuentos
         $clientePDO->create();
     }
 }
+
+function agregarCliente($apellido, $nombre, $dni, $email, $descuento, $soloContacto)
+{
+    $clientePDO = new Cliente();
+    $clientePDO->apellido = $apellido;
+    $clientePDO->nombre = $nombre;
+    $clientePDO->dni = $dni;
+    $clientePDO->email = $email;
+    $clientePDO->idDescuento = $descuento;
+    $clientePDO->soloContacto = $soloContacto;
+    return $clientePDO->create();
+}
 ?>

@@ -4,6 +4,7 @@ session_start();
 
 require_once('../app/models/producto.php');
 require_once('../app/models/compras.php');
+require_once('../app/models/productoStock.php');
 
 if(isset($_REQUEST['action']) and $_REQUEST['action']!=""){
 
@@ -38,8 +39,6 @@ if(isset($_REQUEST['action']) and $_REQUEST['action']!=""){
         // ubico productos
         $ubicacion = $_REQUEST['ubicacion'];
 
-        error_log(PHP_EOL."Ubicacion  2:  " . $ubicacion, 3, "my-errors.log");  
-
         $productoPDO = new Producto();
         $compraPDO = new Compra();
 
@@ -65,12 +64,15 @@ if(isset($_REQUEST['action']) and $_REQUEST['action']!=""){
             } 
             
 
-            $sqlInsert = 'INSERT INTO productos_stock (id_producto, id_editorial, cantidad, id_ubicacion, fecha, costo, nuevo) 
-            VALUES ('.$idProducto.','.$editorial.', '.$cantidad.', '.$ubicacion.', "'.$fecha.'", '.$costo.','.$esNuevo.')';
-            
-            error_log(PHP_EOL.$sqlInsert, 3, "my-errors.log");  
-
-            // $db->query($sqlInsert);
+            $productoStockPDO = new ProductoStock();
+            $productoStockPDO->idProducto = $idProducto;
+            $productoStockPDO->idEditorial = $editorial;
+            $productoStockPDO->cantidad = $cantidad;
+            $productoStockPDO->idUbicacion = $ubicacion;
+            $productoStockPDO->fecha = $fecha;
+            $productoStockPDO->costo = $costo;
+            $productoStockPDO->nuevo = $esNuevo;
+            $productoStockPDO->create();
   
         }
     

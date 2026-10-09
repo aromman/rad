@@ -30,6 +30,17 @@ function procesarSaikoOfertaEditorial($idProducto, $idEditorialNueva, $idMedioPa
     $movimiento->create();
 }
 
+function obtenerSaikoSelectoresViewModel()
+{
+    $editorialPDO = new Editorial();
+    $medioPagoPDO = new MedioPago();
+
+    return array(
+        'editoriales' => (array) $editorialPDO->getAllSinConsignacion(),
+        'mediosPago' => (array) $medioPagoPDO->getAllDeCuentasTipoP(),
+    );
+}
+
 function obtenerEditorialDetalleViewModel($idEditorial)
 {
     $editorialPDO = new Editorial();

@@ -34,10 +34,10 @@
                         <select name="saikoEditorial" id="saikoEditorial" class="form-control" data-live-search="true" data-size="10" required="required">
                         <option value="">Seleccione</option>
                         <?php
-                            $result	=	$db->query("select id, nombre from editoriales where consignacion = false;");
-                            while($val  =   $result->fetch_assoc()){
+                            $saikoSelectoresViewModel = obtenerSaikoSelectoresViewModel();
+                            foreach ($saikoSelectoresViewModel['editoriales'] as $val) {
                             ?>
-                            <option value="<?php echo $val['id']?>" data-subtext="(<?php echo $val['id']?>)" <?php if($val['id']==$medioPago) echo 'selected="selected"'; ?>><?php echo mb_strtoupper($val['nombre'],'UTF-8')?></option>
+                            <option value="<?php echo $val['id']?>" data-subtext="(<?php echo $val['id']?>)"><?php echo mb_strtoupper($val['nombre'],'UTF-8')?></option>
                         <?php }?>
                         </select>
                     </div>
@@ -47,10 +47,9 @@
                         <select name="saikoMedioPago" id="saikoMedioPago" class="form-control" data-live-search="true" data-size="10" required="required">
                         <option value="">Seleccione</option>
                         <?php
-                            $result	=	$db->query("select mp.id, mp.nombre from medio_pago mp, cuentas c where mp.id_cuenta = c.id and c.tipo = 'P'");
-                            while($val  =   $result->fetch_assoc()){
+                            foreach ($saikoSelectoresViewModel['mediosPago'] as $val) {
                             ?>
-                            <option value="<?php echo $val['id']?>" data-subtext="(<?php echo $val['id']?>)" <?php if($val['id']==$medioPago) echo 'selected="selected"'; ?>><?php echo mb_strtoupper($val['nombre'],'UTF-8')?></option>
+                            <option value="<?php echo $val['id']?>" data-subtext="(<?php echo $val['id']?>)"><?php echo mb_strtoupper($val['nombre'],'UTF-8')?></option>
                         <?php }?>
                         </select>
                     </div>
