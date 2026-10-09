@@ -325,4 +325,30 @@ class VentasHeader extends Crud
   }
 
 
+
+  // Ventas con cabecera pero sin ningun registro de detalle en `ventas`
+  public function getSinDetalle(){
+    try
+    {
+        $sql = "SELECT
+            h.id, h.fecha, h.cantidad, h.subTotal, h.descuento, h.total, h.updateDate, h.username,
+            c.nombre canal,
+            CONCAT(cl.apellido, ' ', cl.nombre) cliente,
+            mp.nombre medio_pago
+            FROM ventas_header h
+            LEFT JOIN canal c ON c.id = h.id_canal
+            LEFT JOIN clientes cl ON cl.id = h.id_cliente
+            LEFT JOIN medio_pago mp ON mp.id = h.id_medio_pago
+            WHERE NOT EXISTS (SELECT 1 FROM ventas v WHERE v.id_ventas_header = h.id)
+            ORDER BY h.fecha DESC, h.id DESC";
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch (PDOException $e){
+        $this->logger->log(__FILE__,$e->getMessage(),$this->logger::CRITICAL);
+        return array();
+    }
+  }
+
 }

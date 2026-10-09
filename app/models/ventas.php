@@ -893,5 +893,34 @@ public function getAllMonthGrouByDay(){
 
 
 
+
+  // Registros de `ventas` sin cabecera: id_ventas_header nulo o que apunta a un header inexistente
+  public function getSinHeader(){
+    try
+    {
+        $sql = "SELECT
+            v.id, v.id_ventas_header, v.fecha, v.unidades, v.precio_unitario, v.descuento, v.total,
+            c.nombre canal,
+            p.titulo producto,
+            CONCAT(cl.apellido, ' ', cl.nombre) cliente,
+            mp.nombre medio_pago
+            FROM ventas v
+            LEFT JOIN ventas_header h ON h.id = v.id_ventas_header
+            LEFT JOIN canal c ON c.id = v.id_canal
+            LEFT JOIN productos p ON p.id = v.id_producto
+            LEFT JOIN clientes cl ON cl.id = v.id_cliente
+            LEFT JOIN medio_pago mp ON mp.id = v.id_medio_pago
+            WHERE h.id IS NULL
+            ORDER BY v.fecha DESC, v.id DESC";
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch (PDOException $e){
+        $this->logger->log(__FILE__,$e->getMessage(),$this->logger::CRITICAL);
+        return array();
+    }
+  }
+
 }
 ?>

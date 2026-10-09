@@ -103,6 +103,7 @@ function build_navigation($role, $channelType)
         $addGroup('ventas', '', array(
             array('label' => 'Detalle de Ventas', 'path' => '/ventas/ventas.php', 'icon' => 'fa-receipt'),
             array('label' => 'Ventas a Facturar', 'path' => '/pos/ventas-a-facturar.php', 'icon' => 'fa-file-invoice'),
+            array('label' => 'Ventas Inconsistentes', 'path' => '/ventas/ventas-inconsistentes.php', 'icon' => 'fa-triangle-exclamation'),
         ));
         $addGroup('finanzas', 'Gastos', array(
             array('label' => 'Gastos', 'path' => '/gastos/gastos.php', 'icon' => 'fa-money-bill-transfer'),
