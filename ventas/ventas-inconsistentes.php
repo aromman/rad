@@ -14,6 +14,9 @@ $ventasInconsistentesViewModel = obtenerVentasInconsistentesListadoViewModel();
 $headersSinDetalle = $ventasInconsistentesViewModel['headersSinDetalle'];
 $ventasSinHeader = $ventasInconsistentesViewModel['ventasSinHeader'];
 
+$mensaje = isset($_SESSION['ventasInconsistentes.mensaje']) ? $_SESSION['ventasInconsistentes.mensaje'] : '';
+unset($_SESSION['ventasInconsistentes.mensaje']);
+
 $e = function ($value) {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 };
@@ -59,6 +62,10 @@ $e = function ($value) {
                             <li class="breadcrumb-item active">Ventas Inconsistentes</li>
                         </ol>
 
+                        <?php if ($mensaje !== '') { ?>
+                            <div class="alert alert-info"><?php echo $e($mensaje); ?></div>
+                        <?php } ?>
+
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-file-circle-exclamation me-1"></i>
@@ -82,6 +89,7 @@ $e = function ($value) {
                                             <th class="text-center">Total</th>
                                             <th class="text-center">Usuario</th>
                                             <th class="text-center">Actualizado</th>
+                                            <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -98,6 +106,9 @@ $e = function ($value) {
                                                 <td align="right"><?php echo $row['total']; ?></td>
                                                 <td><?php echo $e($row['usuario']); ?></td>
                                                 <td align="center"><?php echo $e($row['actualizado']); ?></td>
+                                                <td align="center" class="text-nowrap">
+                                                    <a href="asociar-productos.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary"><i class="fas fa-link me-1"></i>Asociar productos</a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

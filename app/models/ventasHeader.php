@@ -327,11 +327,12 @@ class VentasHeader extends Crud
 
 
   // Ventas con cabecera pero sin ningun registro de detalle en `ventas`
-  public function getSinDetalle(){
+  public function getSinDetalle($id = null){
     try
     {
         $sql = "SELECT
-            h.id, h.fecha, h.cantidad, h.subTotal, h.descuento, h.total, h.updateDate, h.username,
+            h.id, h.fecha, h.id_canal, h.id_cliente, h.id_medio_pago,
+            h.cantidad, h.subTotal, h.descuento, h.total, h.updateDate, h.username,
             c.nombre canal,
             CONCAT(cl.apellido, ' ', cl.nombre) cliente,
             mp.nombre medio_pago
@@ -339,10 +340,15 @@ class VentasHeader extends Crud
             LEFT JOIN canal c ON c.id = h.id_canal
             LEFT JOIN clientes cl ON cl.id = h.id_cliente
             LEFT JOIN medio_pago mp ON mp.id = h.id_medio_pago
-            WHERE NOT EXISTS (SELECT 1 FROM ventas v WHERE v.id_ventas_header = h.id)
-            ORDER BY h.fecha DESC, h.id DESC";
+            WHERE NOT EXISTS (SELECT 1 FROM ventas v WHERE v.id_ventas_header = h.id)";
+        $params = array();
+        if ($id !== null) {
+            $sql .= " AND h.id = :id";
+            $params[':id'] = $id;
+        }
+        $sql .= " ORDER BY h.fecha DESC, h.id DESC";
         $stm = $this->pdo->prepare($sql);
-        $stm->execute();
+        $stm->execute($params);
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (PDOException $e){

@@ -922,5 +922,19 @@ public function getAllMonthGrouByDay(){
     }
   }
 
+
+  public function countByHeader($idHeader){
+    try
+    {
+        $stm = $this->pdo->prepare("SELECT COUNT(*) FROM ventas WHERE id_ventas_header = :idHeader");
+        $stm->execute(array(':idHeader' => $idHeader));
+        return (int) $stm->fetchColumn();
+    }
+    catch (PDOException $e){
+        $this->logger->log(__FILE__,$e->getMessage(),$this->logger::CRITICAL);
+        return 0;
+    }
+  }
+
 }
 ?>
