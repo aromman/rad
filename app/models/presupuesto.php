@@ -90,6 +90,20 @@ class Presupuesto extends Crud
     }
   }
 
+  public function updateMonto($id, $monto){
+    try{
+      $stm=$this->pdo->prepare("UPDATE ".self::TABLE." SET monto = :monto WHERE id = :id");
+      $stm->execute(array(
+        ':monto' => $monto,
+        ':id' => $id,
+      ));
+      return true;
+    }catch(PDOException $e){
+        error_log(PHP_EOL."[".date('d.m.Y h:i:s'). "] ".$e->getMessage(), 3, "my-errors.log");
+        return false;
+    }
+  }
+
   public function getTotalByClaseGasto($claseGasto){
       try
       {

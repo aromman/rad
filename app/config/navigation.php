@@ -187,6 +187,9 @@ function build_navigation($role, $channelType)
             array('label' => 'Clases de Gastos', 'path' => '/maestros/gastos-clase.php', 'icon' => 'fa-tags'),
         ));
         $addGroup('informes', 'Informes', navigation_report_items());
+        $addGroup('informes', 'Planes', array(
+            array('label' => 'Negocio Rentable', 'path' => '/informes/negocio-rentable.php', 'icon' => 'fa-sack-dollar'),
+        ));
         $addGroup('administracion', 'Usuarios', array(
             array('label' => 'Usuarios', 'path' => '/usuarios/usuarios.php', 'icon' => 'fa-users-gear'),
             array('label' => 'Roles', 'path' => '/usuarios/roles.php', 'icon' => 'fa-user-shield'),
