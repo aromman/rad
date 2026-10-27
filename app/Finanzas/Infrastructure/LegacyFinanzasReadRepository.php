@@ -79,15 +79,28 @@ final class LegacyFinanzasReadRepository extends \Connection implements Finanzas
         $ventasSql = "
             SELECT
                 COALESCE(SUM(total), 0) AS ventas,
-                COALESCE(SUM(unidades * costo), 0) AS costo_ventas,
                 COALESCE(SUM(descuento), 0) AS descuentos,
-                COUNT(DISTINCT id_ventas_header) AS operaciones
-            FROM ventas
+                COUNT(id) AS operaciones
+            FROM ventas_header
             WHERE id_canal = :canal
               AND fecha >= :inicio
               AND fecha < :fin
         ";
         $ventas = $this->consultarUno($ventasSql, array(
+            ':canal' => $canalId,
+            ':inicio' => $inicio->format('Y-m-d'),
+            ':fin' => $fin->format('Y-m-d'),
+        ));
+
+        // ventas_header no guarda costo: se toma del detalle en ventas
+        $costoSql = "
+            SELECT COALESCE(SUM(unidades * costo), 0) AS costo_ventas
+            FROM ventas
+            WHERE id_canal = :canal
+              AND fecha >= :inicio
+              AND fecha < :fin
+        ";
+        $costo = $this->consultarUno($costoSql, array(
             ':canal' => $canalId,
             ':inicio' => $inicio->format('Y-m-d'),
             ':fin' => $fin->format('Y-m-d'),
@@ -108,7 +121,7 @@ final class LegacyFinanzasReadRepository extends \Connection implements Finanzas
 
         return array(
             'ventas' => round((float) $ventas['ventas'], 2),
-            'costoVentas' => round((float) $ventas['costo_ventas'], 2),
+            'costoVentas' => round((float) $costo['costo_ventas'], 2),
             'descuentos' => round((float) $ventas['descuentos'], 2),
             'operaciones' => (int) $ventas['operaciones'],
             'gastos' => round((float) $gastos['gastos'], 2),
